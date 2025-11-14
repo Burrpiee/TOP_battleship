@@ -1,0 +1,24 @@
+# Dependencies
+/node_modules
+/jspm_packages
+
+# Build outputs
+/dist
+/build
+/out
+
+# Logs and temp files
+npm-debug.log*
+yarn-debug.log*
+.log
+
+# Environment files
+.env
+.env.*
+!.env.example # Keep the example file
+
+# IDEs and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
