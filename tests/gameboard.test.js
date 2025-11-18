@@ -33,22 +33,6 @@ describe('Gameboard', () => {
         expect(board[0][0].hasShip).toBeTruthy();
         expect(board[0][0].shipRef).toBe(ship);
 
-        expect(board[0][1].hasShip).toBeTruthy();
-        expect(board[0][1].shipRef).toBe(ship);
-
-        expect(board[0][2].hasShip).toBeTruthy();
-        expect(board[0][2].shipRef).toBe(ship);
-
-        //Check cell next to ship (false)
-        expect(board[1][0].hasShip).toBeFalsy();
-    });
-
-    test('allows placement of ships vertically', () => {
-        gameboard.placeShip(ship, 0, 0, true) // True = vertical
-
-        expect(board[0][0].hasShip).toBeTruthy();
-        expect(board[0][0].shipRef).toBe(ship);
-
         expect(board[1][0].hasShip).toBeTruthy();
         expect(board[1][0].shipRef).toBe(ship);
 
@@ -59,7 +43,31 @@ describe('Gameboard', () => {
         expect(board[0][1].hasShip).toBeFalsy();
     });
 
-    test('rejects placement of ships out of bound of board', () => {
+    test('allows placement of ships vertically', () => {
+        gameboard.placeShip(ship, 0, 0, true) // True = vertical
+
+        expect(board[0][0].hasShip).toBeTruthy();
+        expect(board[0][0].shipRef).toBe(ship);
+
+        expect(board[0][1].hasShip).toBeTruthy();
+        expect(board[0][1].shipRef).toBe(ship);
+
+        expect(board[0][2].hasShip).toBeTruthy();
+        expect(board[0][2].shipRef).toBe(ship);
+
+        //Check cell next to ship (false)
+        expect(board[1][0].hasShip).toBeFalsy();
+    });
+
+    test('rejects placement of ships crossing horizontal board bounds', () => {
         expect(gameboard.placeShip(ship, 8, 0, false)).toBeFalsy();
+    });
+
+    test('rejects placement of ships crossing vertical board bounds', () => {
+        expect(gameboard.placeShip(ship, 0, 8, true)).toBeFalsy();
+    });
+
+    test('prevent negative values when placing ship', () => {
+        expect(gameboard.placeShip(ship, -1, -2, false)).toBeFalsy();
     });
 });
