@@ -4,7 +4,7 @@ export default class Gameboard {
     constructor() {
         this.boardSize = 10 // 10 is standard battleship board size
         this.board = createGrid(this.boardSize);
-        this.missedAtacks = [];
+        this.missedAttacks = [];
         this.ships = [];
     }
 
@@ -62,7 +62,18 @@ export default class Gameboard {
 
     // Attacking logic
     receiveAttack(x, y){
+        const target = this.board[x][y];
 
+        target.isHit = true;
+        
+        if (target.hasShip) {
+            const ship = target.shipRef;
+            ship.hit();
+
+            return true;
+        } else {
+            this.missedAttacks.push([x, y]);
+        }
     }
     // Game status
 }

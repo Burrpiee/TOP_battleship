@@ -88,4 +88,19 @@ describe('Gameboard', () => {
 
         expect(gameboard.placeShip(ship2, 0, 0, true)).toBeFalsy();
     });
+
+    test('records hits on ships and gameboard from receiveAttack function', () => {
+        gameboard.placeShip(ship, 0, 0, false);
+        gameboard.receiveAttack(0, 0);
+        
+        expect(board[0][0].isHit).toBeTruthy();
+        expect(ship.hits).toBe(1);
+    });
+
+    test('pushes stores missed attacks in the missedAttacks array', () => {
+        gameboard.receiveAttack(0, 0);
+
+        expect(gameboard.missedAttacks).toContainEqual([0, 0]);
+        expect(board[0][0].isHit).toBeTruthy();
+    });
 });
