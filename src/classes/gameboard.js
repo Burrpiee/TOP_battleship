@@ -34,11 +34,28 @@ export default class Gameboard {
 
     //Validating placement
     isValidPlacement(ship, x, y, isVertical) {
+        //Boundary check
         if (x < 0 || y < 0) return false;
 
-        if (x + ship.length > this.boardSize) return false;
+        if(isVertical) {
+            if (y + ship.length > this.boardSize || x >= this.boardSize) return false;
+        } else {
+            if (x + ship.length > this.boardSize || y >= this.boardSize) return false;
+        }
 
-        if (y + ship.length > this.boardSize) return false;
+        //Overlap check
+        for (let i = 0; i < ship.length; i++) {
+            let currentX = x;
+            let currentY = y;
+
+            if (isVertical) {
+                currentY += i;
+            } else {
+                currentX += i;
+            }
+
+            if (this.board[currentX][currentY].hasShip) return false;
+        }
 
         return true;
     }

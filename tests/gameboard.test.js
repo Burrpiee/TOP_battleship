@@ -67,7 +67,25 @@ describe('Gameboard', () => {
         expect(gameboard.placeShip(ship, 0, 8, true)).toBeFalsy();
     });
 
-    test('prevent negative values when placing ship', () => {
+    test('prevent out of bounds x and y values', () => {
         expect(gameboard.placeShip(ship, -1, -2, false)).toBeFalsy();
+        expect(gameboard.placeShip(ship, 11, 11, false)).toBeFalsy();
+        expect(gameboard.placeShip(ship, -1, -2, true)).toBeFalsy();
+        expect(gameboard.placeShip(ship, 11, 11, true)).toBeFalsy();
+    });
+
+    test('accepts vertical placement of ships at horizontal edge', () => {
+        expect(gameboard.placeShip(ship, 9, 7, true)).toBeTruthy();
+    });
+
+    test('accept horizontal placement of ships at vertical edge', () => {
+        expect(gameboard.placeShip(ship, 7, 9, false)).toBeTruthy();
+    });
+
+    test('prevents overlapping placement of ships', () => {
+        gameboard.placeShip(ship, 0, 0, false);
+        let ship2 = new Ship(3);
+
+        expect(gameboard.placeShip(ship2, 0, 0, true)).toBeFalsy();
     });
 });
