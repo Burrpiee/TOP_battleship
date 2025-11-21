@@ -76,6 +76,9 @@ export default class Gameboard {
         }
     }
     // Game status
+    areAllShipsSunk() {
+        return this.ships.every(ship => ship.isSunk());
+    }
 }
 
 const createGrid = (size) => {

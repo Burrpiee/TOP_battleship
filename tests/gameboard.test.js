@@ -103,4 +103,15 @@ describe('Gameboard', () => {
         expect(gameboard.missedAttacks).toContainEqual([0, 0]);
         expect(board[0][0].isHit).toBeTruthy();
     });
+
+    test('can check if all ships on gameboard are sunk', () => {
+        gameboard.placeShip(ship, 0, 0, false);
+        gameboard.receiveAttack(0, 0);
+        gameboard.receiveAttack(1, 0);
+        gameboard.receiveAttack(2, 0);
+        
+        expect(gameboard.areAllShipsSunk()).toBeTruthy();
+    });
+
+    
 });
