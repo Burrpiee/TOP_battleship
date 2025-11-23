@@ -1,4 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.body {
+    line-height: 1.5;
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
 .board-Container{
     display: grid;
-    
+
+}
+
+.board-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.label-cells {
+
+}
+
+/* for cell hits */
+.miss {
+
+}
+
+.hit{ 
+
 }

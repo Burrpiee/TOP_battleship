@@ -13,10 +13,17 @@ const renderBoard = (board, containerId) => {
 
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 
-    for(let i = 0; i < size * size; i++) {
-        const cell = document.createElement('div');
+    for(let x = 0; x < size; x++) {
+        for(let y = 0; y < size; y++){
+            const cell = document.createElement('div');
 
-        container.appendChild(cell);
+            cell.dataset.x = x;
+            cell.dataset.y = y;
+
+            cell.classList.add('board-cell'); 
+
+            container.appendChild(cell);
+        }
     }
 };
 
