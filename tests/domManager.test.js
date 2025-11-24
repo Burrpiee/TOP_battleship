@@ -30,6 +30,28 @@ describe('renderBoard', () => {
     });
 });
 
+describe('renderLabels', () => {
+    test('should render labels correctly at the edges of the board', () => {
+        mockBoard = [...Array(3)].map(() => [...Array(3)].map(() => null));
+
+        document.body.innerHTML = `<div id="player1-wrapper">
+            <div class="column-labels"></div>
+            <div class="row-labels"></div>
+        </div>`
+
+        const columnLabels = document.querySelector('.column-labels');
+        const rowLabels = document.querySelector('.row-labels');
+
+        domManager.renderLabels(mockBoard, 'player1-wrapper');
+
+        expect(columnLabels.children[0].textContent).toBe('A');
+        expect(rowLabels.children[0].textContent).toBe('1');
+
+        expect(columnLabels.children[2].textContent).toBe('C');
+        expect(rowLabels.children[2].textContent).toBe('3');   
+    });
+});
+
 describe('updateCell', () => {
     test('should add hit class to cell on successful hit', () => {
         document.body.innerHTML = `
@@ -39,13 +61,23 @@ describe('updateCell', () => {
 
         const cell = document.querySelector('[data-x="5"][data-y="5"]');
 
-        updateCell(5, 5, true, 'test-container');
+        domManager.updateCell(5, 5, true, 'test-container');
 
         expect(cell.classList).toContain('hit');
         expect(cell.classList).not.toContain('miss');
     });
 
     test('should add miss class to cell on unsuccessful hit', () => {
+        document.body.innerHTML = `
+        <div id="test-container">
+            <div data-x="1" data-y="1" class"board-cell"></div>
+        </div>`;
 
+        const cell = document.querySelector('[data-x="1"][data-y="1"]');
+
+        domManager.updateCell(1, 1, false, 'test-container');
+
+        expect(cell.classList).toContain('miss');
+        expect(cell.classList).not.toContain('hit');
     });
 });
