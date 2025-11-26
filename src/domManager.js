@@ -1,7 +1,5 @@
  
-const renderBoard = (board, containerId) => {
-    const container = document.getElementById(containerId);
-
+const renderBoard = (board, container) => {
     if (!container) {
         console.error('Container cannot be found');
         return;
@@ -27,9 +25,7 @@ const renderBoard = (board, containerId) => {
     }
 };
 
-const renderLabels = (board, wrapperId) => {
-    const wrapper = document.getElementById(wrapperId);
-
+const renderLabels = (board, wrapper) => {
     if (!wrapper) return;
 
     const size = board.length;
@@ -63,8 +59,7 @@ const renderLabels = (board, wrapperId) => {
     }
 };
 
-const updateCell = (x, y, hasShip, containerId) => {
-    const container = document.getElementById(containerId);
+const updateCell = (x, y, hasShip, container) => {
     const cell = container.querySelector(`[data-x="${x}"][data-y="${y}"]`);
 
     cell.classList.add(hasShip ? 'hit' : 'miss');

@@ -8,9 +8,9 @@ describe('renderBoard', () => {
         mockBoard = [...Array(3)].map(() => [...Array(3)].map(() => null));
 
         document.body.innerHTML = '<div id="test-container"></div>';
-        domManager.renderBoard(mockBoard, 'test-container');
-
         container = document.getElementById('test-container');
+
+        domManager.renderBoard(mockBoard, container);
     });
 
     test('is able to create a 3 x 3 grid with 9 cells', () => { 
@@ -34,7 +34,8 @@ describe('renderLabels', () => {
     test('should render labels correctly at the edges of the board', () => {
         mockBoard = [...Array(3)].map(() => [...Array(3)].map(() => null));
 
-        document.body.innerHTML = `<div id="player1-wrapper">
+        document.body.innerHTML = `
+        <div id="player1-wrapper">
             <div class="column-labels"></div>
             <div class="row-labels"></div>
         </div>`
@@ -42,7 +43,9 @@ describe('renderLabels', () => {
         const columnLabels = document.querySelector('.column-labels');
         const rowLabels = document.querySelector('.row-labels');
 
-        domManager.renderLabels(mockBoard, 'player1-wrapper');
+        const player1Wrapper = document.getElementById('player1-wrapper');
+
+        domManager.renderLabels(mockBoard, player1Wrapper);
 
         expect(columnLabels.children[0].textContent).toBe('A');
         expect(rowLabels.children[0].textContent).toBe('1');
@@ -60,8 +63,9 @@ describe('updateCell', () => {
         </div>`;
 
         const cell = document.querySelector('[data-x="5"][data-y="5"]');
+        const container = document.getElementById('test-container');
 
-        domManager.updateCell(5, 5, true, 'test-container');
+        domManager.updateCell(5, 5, true, container);
 
         expect(cell.classList).toContain('hit');
         expect(cell.classList).not.toContain('miss');
@@ -74,8 +78,9 @@ describe('updateCell', () => {
         </div>`;
 
         const cell = document.querySelector('[data-x="1"][data-y="1"]');
+        const container = document.getElementById('test-container');
 
-        domManager.updateCell(1, 1, false, 'test-container');
+        domManager.updateCell(1, 1, false, container);
 
         expect(cell.classList).toContain('miss');
         expect(cell.classList).not.toContain('hit');
