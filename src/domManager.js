@@ -1,5 +1,14 @@
- 
-const renderBoard = (board, container) => {
+
+const setupWrapper = (boardSize, wrapperElement) => {
+    if (!wrapperElement) return;
+
+    const template = `1fr repeat(${boardSize}}, 1fr)`
+
+    wrapperElement.style.gridTemplateColumns = template;
+    wrapperElement.style.gridTemplateRows = template;
+}
+
+const renderBoard = (boardSize, container) => {
     if (!container) {
         console.error('Container cannot be found');
         return;
@@ -7,12 +16,10 @@ const renderBoard = (board, container) => {
 
     container.innerHTML = '';
 
-    const size = board.length;
+    container.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
 
-    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-
-    for(let x = 0; x < size; x++) {
-        for(let y = 0; y < size; y++){
+    for(let x = 0; x < boardSize; x++) {
+        for(let y = 0; y < boardSize; y++){
             const cell = document.createElement('div');
 
             cell.dataset.x = x;
@@ -25,19 +32,17 @@ const renderBoard = (board, container) => {
     }
 };
 
-const renderLabels = (board, wrapper) => {
+const renderLabels = (boardSize, wrapper) => {
     if (!wrapper) return;
-
-    const size = board.length;
 
     const columnLabel = wrapper.querySelector('.column-labels');
     const rowLabel = wrapper.querySelector('.row-labels');
     
     columnLabel.style.display = 'grid';
-    columnLabel.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    columnLabel.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
 
     rowLabel.style.display = 'grid';
-    rowLabel.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+    rowLabel.style.gridTemplateRows = `repeat(${boardSize}, 1fr)`;
 
     // First cell of label grid is blank
     // const emptyCellCol = document.createElement('div');
@@ -45,7 +50,7 @@ const renderLabels = (board, wrapper) => {
     // columnLabel.appendChild(emptyCellCol);
     // rowLabel.appendChild(emptyRowCol);
 
-    for(let i = 0; i < size; i++) {
+    for(let i = 0; i < boardSize; i++) {
         const cellCol = document.createElement('div');
         const cellRow = document.createElement('div');
 
@@ -69,7 +74,8 @@ const displayMessage = () => {
 
 };
 
-export default {
+export {
+    setupWrapper,
     renderBoard,
     renderLabels,
     updateCell,

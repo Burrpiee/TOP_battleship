@@ -1,21 +1,74 @@
+
 * {
     box-sizing: border-box;
     margin: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.body {
+body {
     line-height: 1.5;
-    height: 100vh;
+    min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+
+    display: flex;
+    flex-direction: column;
 }
 
 input, button, textarea, select {
   font: inherit;
 }
 
-.board-Container{
+/* Header Section */
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1.5rem;
+}
+
+.display {
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    width: 40%;
+    background-color: #f0f0f0;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.instructions {
+    height: 1.8rem;
+    width: 1.8rem;
+    border-radius: 50%;
+    border: 1px solid black;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: lightskyblue;
+    }
+}
+
+.gameboard-container {
+    display: flex;
+    
+}
+
+.gameboard-wrapper {
     display: grid;
 
+    gap: inherit;
+}
+
+.board-container{
+    grid-column: 2;
+    grid-row: 2;
+
+    display: grid;
+
+    border: 1px solid black;
 }
 
 .board-cell {
@@ -24,7 +77,7 @@ input, button, textarea, select {
     align-items: center;
 
     border: 1px solid black;
-    
+
 }
 
 .label-cells {

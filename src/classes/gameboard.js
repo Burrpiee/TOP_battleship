@@ -1,8 +1,8 @@
 import Ship from "./ship";
 
 export default class Gameboard {
-    constructor() {
-        this.boardSize = 10 // 10 is standard battleship board size
+    constructor(boardSize) {
+        this.boardSize = boardSize;
         this.board = createGrid(this.boardSize);
         this.missedAttacks = [];
         this.ships = [];
@@ -79,10 +79,23 @@ export default class Gameboard {
     areAllShipsSunk() {
         return this.ships.every(ship => ship.isSunk());
     }
+
+    randomlyPlaceShips() {
+
+    }
 }
 
+// Helper functions
 const createGrid = (size) => {
     return [...Array(size)].map(() => 
         [...Array(size)].map(() => ({hasShip: false, isHit: false, shipRef: null,}))
     );
+};
+
+const getRandomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+const getRandomBool = () => {
+    return Math.random() < 0.5;
 }

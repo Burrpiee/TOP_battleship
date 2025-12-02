@@ -4,23 +4,38 @@ import Player from "./classes/player";
 import Ship from "./classes/ship";
 
 import { 
+    setupWrapper,
     renderBoard,
     renderLabels,
     updateCell,
     displayMessage,
 } from "./domManager";
 
+let dom = {};
 
-const dom = {
-    player1Wrapper: document.getElementById('player1-wrapper'),
-    player2Wrapper: document.getElementById('player2-wrapper'),
-    player1Container: document.getElementById('player1-container'),
-    player2Container: document.getElementById('player2-container'),
+const cacheDom = () => {
+    dom.player1Wrapper = document.getElementById('player1-wrapper');
+    dom.player2Wrapper = document.getElementById('player2-wrapper');
+    dom.player1Container = document.getElementById('player1-container');
+    dom.player2Container = document.getElementById('player2-container');
 };
 
-const init = () => {  
-    const player1 = new Player();
-    const player2 = new Player();
+const init = () => {
+    cacheDom();
+    const boardSize = 10;
 
-    renderBoard(player1.gameboard, player1Container)
+    const player1 = new Player('player1', boardSize);
+    const player2 = new Player('player2', boardSize);
+
+    // Player 1 setup
+    setupWrapper(boardSize, dom.player1Wrapper);
+    renderLabels(boardSize, dom.player1Wrapper);
+    renderBoard(player1.gameboard.board, dom.player1Container);
+
+    //Player 2 setup
+    setupWrapper(boardSize, dom.player2Wrapper);
+    renderLabels(boardSize, dom.player2Wrapper);
+    renderBoard(player.gameboard.board, dom.player2Container);
 };
+
+init();

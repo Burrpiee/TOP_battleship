@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battleship</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <div class="title">Battleship</div>
-            <div class="display" id="display"></div>
-            <button class="instructions" id="instructions"></button>
-        </div>
+        <h1 class="title">Battleship</h1>
+        <div class="display" id="display">Place your ships</div>
+        <button class="instructions" id="instructions">i</button>
     </header>
     <main>
-        <div class="gameboard-containers">
-            <div id="player1-wrapper">
+        <div class="gameboard-container">
+            <div id="player1-wrapper" class="gameboard-wrapper">
+                <div class="empty-cell"></div>
                 <div class="column-labels"></div>
                 <div class="row-labels"></div>
                 <div class="board-container" id="player1-container"></div>
             </div>
-            <div id="player2-wrapper">
+            <div id="player2-wrapper" class="gameboard-wrapper">
+                <div class="empty-cell"></div>
                 <div class="column-labels"></div>
                 <div class="row-labels"></div>
                 <div class="board-container" id="player2-container"></div>
