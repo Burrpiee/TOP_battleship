@@ -44,19 +44,14 @@ const renderLabels = (boardSize, wrapper) => {
     rowLabel.style.display = 'grid';
     rowLabel.style.gridTemplateRows = `repeat(${boardSize}, 1fr)`;
 
-    // First cell of label grid is blank
-    // const emptyCellCol = document.createElement('div');
-    // const emptyRowCol = document.createElement('div');
-    // columnLabel.appendChild(emptyCellCol);
-    // rowLabel.appendChild(emptyRowCol);
-
     for(let i = 0; i < boardSize; i++) {
         const cellCol = document.createElement('div');
         const cellRow = document.createElement('div');
+        cellCol.classList.add('label-cell');
+        cellRow.classList.add('label-cell');
 
         let charCode = 65 + i; // 65 is A
         cellCol.textContent = String.fromCharCode(charCode);
-
         cellRow.textContent = i + 1;
 
         columnLabel.append(cellCol);

@@ -16,8 +16,8 @@ let dom = {};
 const cacheDom = () => {
     dom.player1Wrapper = document.getElementById('player1-wrapper');
     dom.player2Wrapper = document.getElementById('player2-wrapper');
-    dom.player1Container = document.getElementById('player1-container');
-    dom.player2Container = document.getElementById('player2-container');
+    dom.player1Container = document.getElementById('player1-board-container');
+    dom.player2Container = document.getElementById('player2-board-container');
 };
 
 const init = () => {
@@ -30,12 +30,12 @@ const init = () => {
     // Player 1 setup
     setupWrapper(boardSize, dom.player1Wrapper);
     renderLabels(boardSize, dom.player1Wrapper);
-    renderBoard(player1.gameboard.board, dom.player1Container);
+    renderBoard(boardSize, dom.player1Container);
 
     //Player 2 setup
     setupWrapper(boardSize, dom.player2Wrapper);
     renderLabels(boardSize, dom.player2Wrapper);
-    renderBoard(player.gameboard.board, dom.player2Container);
+    renderBoard(boardSize, dom.player2Container);
 };
 
 init();

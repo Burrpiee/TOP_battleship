@@ -1,3 +1,6 @@
+:root {
+    --cell-size: 2.3rem;
+}
 
 * {
     box-sizing: border-box;
@@ -12,6 +15,7 @@ body {
 
     display: flex;
     flex-direction: column;
+    gap: 3rem;
 }
 
 input, button, textarea, select {
@@ -21,9 +25,9 @@ input, button, textarea, select {
 /* Header Section */
 header {
     display: flex;
-    width: 100%;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 
     padding: 1.5rem;
 }
@@ -36,6 +40,10 @@ header {
     background-color: #f0f0f0;
     text-align: center;
     font-size: 1.1rem;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .instructions {
@@ -51,15 +59,17 @@ header {
     }
 }
 
-.gameboard-container {
+/* Main Section */
+main {
     display: flex;
-    
+    column-gap: 6rem;
+    row-gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .gameboard-wrapper {
     display: grid;
-
-    gap: inherit;
 }
 
 .board-container{
@@ -72,16 +82,29 @@ header {
 }
 
 .board-cell {
+    border: 1px solid black;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: lightcoral;
+    }
+}
+
+.label-cell,
+.board-cell {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    border: 1px solid black;
-
+    height: var(--cell-size);
+    width: var(--cell-size);
 }
 
-.label-cells {
-
+.board-title {
+    text-align: center;
+    margin-left: var(--cell-size);
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 /* for cell hits */
