@@ -1,16 +1,16 @@
-import domManager from "../src/domManager";
+import * as domManager from "../src/domManager";
 
-let mockBoard, container;
+let boardSize, container;
 
 describe('renderBoard', () => {
     beforeEach(() => {
         //Using 3x3 for multicase/faster checking
-        mockBoard = [...Array(3)].map(() => [...Array(3)].map(() => null));
+        boardSize = 3;
 
         document.body.innerHTML = '<div id="test-container"></div>';
         container = document.getElementById('test-container');
 
-        domManager.renderBoard(mockBoard, container);
+        domManager.renderBoard(boardSize, container);
     });
 
     test('is able to create a 3 x 3 grid with 9 cells', () => { 
@@ -32,7 +32,7 @@ describe('renderBoard', () => {
 
 describe('renderLabels', () => {
     test('should render labels correctly at the edges of the board', () => {
-        mockBoard = [...Array(3)].map(() => [...Array(3)].map(() => null));
+        boardSize = 3;
 
         document.body.innerHTML = `
         <div id="player1-wrapper">
@@ -45,7 +45,7 @@ describe('renderLabels', () => {
 
         const player1Wrapper = document.getElementById('player1-wrapper');
 
-        domManager.renderLabels(mockBoard, player1Wrapper);
+        domManager.renderLabels(boardSize, player1Wrapper);
 
         expect(columnLabels.children[0].textContent).toBe('A');
         expect(rowLabels.children[0].textContent).toBe('1');

@@ -38,10 +38,7 @@ const renderLabels = (boardSize, wrapper) => {
     const columnLabel = wrapper.querySelector('.column-labels');
     const rowLabel = wrapper.querySelector('.row-labels');
     
-    columnLabel.style.display = 'grid';
     columnLabel.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
-
-    rowLabel.style.display = 'grid';
     rowLabel.style.gridTemplateRows = `repeat(${boardSize}, 1fr)`;
 
     for(let i = 0; i < boardSize; i++) {
@@ -66,7 +63,7 @@ const updateCell = (x, y, hasShip, container) => {
 };
 
 const displayMessage = () => {
-
+    
 };
 
 export {

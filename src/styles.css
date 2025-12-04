@@ -90,6 +90,11 @@ main {
     }
 }
 
+.column-labels,
+.row-labels {
+    display: grid;
+}
+
 .label-cell,
 .board-cell {
     display: flex;
